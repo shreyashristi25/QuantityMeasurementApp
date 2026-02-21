@@ -1,6 +1,7 @@
 # Ignore everything
 *
-
+src/.metadata/
+.metadata/
 # But do not ignore directories
 !*/
 
