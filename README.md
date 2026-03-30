@@ -1,61 +1,118 @@
-# UC14: Temperature Measurement Support
+## UC16: Database Integration & Persistence Support
 
-## About : 
-This use case adds **temperature measurement** to the application.
+### 📖 About
 
-Temperature supports comparison and conversion, but arithmetic operations are not allowed because they are physically meaningless.
+This use case adds **database integration** to the application.
 
----
+It enables the system to store, retrieve, and manage data using a structured persistence layer.
 
-## Supported Units
-- Celsius (base unit)
-- Fahrenheit
-- Kelvin
+The focus is on **clean database interaction, performance, and maintainability**.
 
 ---
 
-## Supported Features
+### Supported Components
 
-### Equality Comparison
-Temperature values can be compared across units.
-
-Examples:
-
-0°C = 32°F  
-100°C = 212°F  
-0°C = 273.15K  
--40°C = -40°F  
-
-### Unit Conversion
-Temperature values can be converted between units.
-
-Examples:
-
-100°C → 212°F  
-32°F → 0°C  
-0°C → 273.15K  
--40°C → -40°F  
+- Maven Project Structure  
+- JDBC (Java Database Connectivity)  
+- Connection Pooling  
+- Parameterized SQL Queries  
+- Transaction Management  
 
 ---
 
-## Rules
-- Temperature values can only be compared with temperature values.
-- Conversion uses formula-based calculations.
-- Arithmetic operations throw an exception.
-- Cross-category comparisons are not allowed.
+### Supported Features
+
+#### Database Connectivity
+
+The application connects to the database using JDBC.
+
+- Executes SQL queries  
+- Retrieves and stores data  
+- Acts as a bridge between application and database  
 
 ---
 
-## Concepts Used
-- Non-linear unit conversion formulas
-- Category-specific operation restrictions
-- Exception handling for unsupported operations
-- Generic architecture extension
-- Backward compatibility
+#### Connection Management
+
+Database connections are reused using connection pooling.
+
+Benefits:
+- Improved performance  
+- Reduced overhead  
 
 ---
 
-## Improvement Over UC13
-UC13 improved arithmetic design.
+#### Secure Queries
 
-UC14 adds a new measurement category (Temperature) with selective operation support.
+Parameterized SQL queries are used for safety.
+
+Example:
+- `SELECT * FROM users WHERE id = ?`
+
+Prevents:
+- SQL injection  
+- Unsafe query execution  
+
+---
+
+#### Transaction Handling
+
+Ensures data consistency:
+
+- All operations succeed, or  
+- All operations are rolled back  
+
+---
+
+#### Layer Integration
+
+Data flows through layers:
+
+Controller → Service → Repository → Database  
+
+---
+
+### Rules
+
+- Only the repository layer can interact with the database  
+- Always use parameterized queries  
+- Resources must be properly closed  
+- Transactions must ensure consistency  
+- Business logic must not be mixed with database logic  
+
+---
+
+### Concepts Used
+
+- JDBC API  
+- Connection pooling  
+- Resource management  
+- Exception handling  
+- Database schema design  
+- Separation of concerns  
+- Configuration management  
+- SQL best practices  
+- Transaction management  
+- Performance optimization  
+
+---
+
+### Improvement Over UC15
+
+- UC15 focused on architecture and design principles  
+- UC16 extends the system by:
+  - Adding a **persistence layer**
+  - Enabling **real data storage and retrieval**
+  - Improving **performance and reliability**
+
+---
+
+### Summary
+
+UC16 enhances the system by introducing:
+
+- Reliable database connectivity  
+- Clean separation of persistence logic  
+- Efficient and secure data handling  
+
+This makes the application more practical and ready for real-world use.
