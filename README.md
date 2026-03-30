@@ -1,61 +1,160 @@
-# UC14: Temperature Measurement Support
+## 🏗️ UC15: Architecture & Design Principles Enhancement
 
-## About : 
-This use case adds **temperature measurement** to the application.
+### 📖 About
 
-Temperature supports comparison and conversion, but arithmetic operations are not allowed because they are physically meaningless.
+This use case focuses on strengthening the application's **architecture, design patterns, and maintainability**.
 
----
+It introduces a structured approach using:
+- Layered architecture  
+- SOLID principles  
+- Clean coding practices  
 
-## Supported Units
-- Celsius (base unit)
-- Fahrenheit
-- Kelvin
-
----
-
-## Supported Features
-
-### Equality Comparison
-Temperature values can be compared across units.
-
-Examples:
-
-0°C = 32°F  
-100°C = 212°F  
-0°C = 273.15K  
--40°C = -40°F  
-
-### Unit Conversion
-Temperature values can be converted between units.
-
-Examples:
-
-100°C → 212°F  
-32°F → 0°C  
-0°C → 273.15K  
--40°C → -40°F  
+The goal is to make the system **scalable, testable, and easy to extend**.
 
 ---
 
-## Rules
-- Temperature values can only be compared with temperature values.
-- Conversion uses formula-based calculations.
-- Arithmetic operations throw an exception.
-- Cross-category comparisons are not allowed.
+### Core Architecture
+
+#### N-Tier Architecture Principles
+
+The application is organized into multiple layers:
+
+- **Controller Layer** → Handles API requests and responses  
+- **Service Layer** → Contains business logic  
+- **Repository Layer** → Manages data persistence  
+- **DTO Layer** → Transfers data between layers  
+
+This ensures clear separation of concerns.
 
 ---
 
-## Concepts Used
-- Non-linear unit conversion formulas
-- Category-specific operation restrictions
-- Exception handling for unsupported operations
-- Generic architecture extension
-- Backward compatibility
+### Data Transfer Objects (DTOs)
+
+DTOs are used to:
+
+- Transfer data between layers  
+- Prevent exposure of internal entities  
+- Control API response structure  
 
 ---
 
-## Improvement Over UC13
-UC13 improved arithmetic design.
+### Service-Oriented Design
 
-UC14 adds a new measurement category (Temperature) with selective operation support.
+- Business logic is encapsulated in **services**
+- Each service represents a **specific responsibility**
+- Promotes modular and reusable code
+
+---
+
+### Dependency Injection Pattern
+
+- Dependencies are injected rather than created manually  
+- Reduces tight coupling between components  
+- Improves flexibility and testability  
+
+---
+
+### Error Handling as Data
+
+- Errors are returned as **structured responses**
+- Avoids leaking internal exceptions
+- Provides consistent API behavior  
+
+---
+
+### Immutability in Data Objects
+
+- DTOs are designed to be **immutable**
+- Prevents unintended state changes  
+- Ensures safer and predictable data flow  
+
+---
+
+### SOLID Principles
+
+#### 1. Single Responsibility Principle (SRP)
+Each class has **one responsibility only**
+
+#### 2. Open-Closed Principle (OCP)
+- Open for extension  
+- Closed for modification  
+
+#### 3. Liskov Substitution Principle (LSP)
+Subclasses should not break parent behavior  
+
+#### 4. Interface Segregation Principle (ISP)
+Use **small, specific interfaces** instead of large ones  
+
+#### 5. Dependency Inversion Principle (DIP)
+Depend on **abstractions, not implementations**
+
+---
+
+### Testability Improvements
+
+- Loose coupling via DI  
+- Clear separation of layers  
+- Services can be easily mocked  
+
+---
+
+### Scalability for New Interfaces
+
+The system is designed to support:
+
+- Web applications  
+- Mobile clients  
+- External APIs  
+
+With minimal changes to core logic.
+
+---
+
+### Configuration and Initialization
+
+- Centralized configuration management  
+- Environment-based setup  
+- Clean initialization of components  
+
+---
+
+### Rules
+
+- Each layer must follow **single responsibility**
+- Business logic should reside only in **service layer**
+- DTOs must not contain business logic  
+- Dependencies must be **injected, not hardcoded**
+- System must remain **open for extension**
+
+---
+
+### Concepts Used
+
+- **Layered (N-Tier) architecture**
+- **SOLID design principles**
+- **Dependency Injection**
+- **Immutability**
+- **Clean code practices**
+- **Scalable system design**
+
+---
+
+### Improvement Over UC14
+
+- **UC14** focused on adding a new feature (Temperature measurement)  
+- **UC15** improves the system by:
+  - Strengthening **overall architecture**
+  - Introducing **design principles**
+  - Making the system more **maintainable and extensible**
+
+---
+
+### Summary
+
+UC15 enhances the application by introducing:
+
+- Clean and structured **architecture**
+- Strong **design principles (SOLID)**
+- Improved **testability and scalability**
+
+ *This lays the foundation for building robust, production-ready systems.*th selective operation support.
