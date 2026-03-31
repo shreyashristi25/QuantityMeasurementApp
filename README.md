@@ -210,7 +210,7 @@ The `dev` branch ensures:
 
 ## 🔗 Repository
 
-👉 https://github.com/Saud0786/QuantityMeasurementApp/tree/dev
+👉 https://github.com/shreyashristi25/QuantityMeasurementApp/tree/dev
 
 ---
 
