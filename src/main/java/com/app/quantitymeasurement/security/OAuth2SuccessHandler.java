@@ -5,12 +5,13 @@ import jakarta.servlet.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 @Component
-public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
+public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -19,14 +20,16 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
                                         Authentication authentication)
-                                        throws IOException, ServletException {
+                                        throws IOException {
 
         String username = authentication.getName();
-
         String token = jwtUtil.generateToken(username);
 
-        // Send JWT in response
+        // 🔥 IMPORTANT: prevent redirect
+        clearAuthenticationAttributes(request);
+
         response.setContentType("application/json");
         response.getWriter().write("{\"token\": \"" + token + "\"}");
+        response.getWriter().flush();
     }
 }

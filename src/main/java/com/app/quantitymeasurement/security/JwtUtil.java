@@ -9,30 +9,41 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private final String SECRET = "mysecretkeymysecretkeymysecretkey12345";
+
+    private Key getKey() {
+        return Keys.hmacShaKeyFor(SECRET.getBytes());
+    }
 
     public String generateToken(String username) {
-
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 86400000))
-                .signWith(key)
+                .signWith(getKey())
                 .compact();
     }
 
     public String extractUsername(String token) {
-
         return Jwts.parserBuilder()
-                .setSigningKey(key)
+                .setSigningKey(getKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
     }
-    
-    
+
     public boolean validateToken(String token, String username) {
-        return extractUsername(token).equals(username);
+        return extractUsername(token).equals(username) && !isExpired(token);
+    }
+
+    private boolean isExpired(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(getKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getExpiration()
+                .before(new Date());
     }
 }

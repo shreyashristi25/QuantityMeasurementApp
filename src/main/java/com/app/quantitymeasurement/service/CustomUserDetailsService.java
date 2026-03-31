@@ -2,6 +2,7 @@ package com.app.quantitymeasurement.service;
 
 import com.app.quantitymeasurement.auth.entity.User;
 import com.app.quantitymeasurement.auth.repository.UserRepository;
+import com.app.quantitymeasurement.exception.UserAlreadyExistsException;
 
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,21 +14,22 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
 
-    // ✅ Constructor Injection (FIXED)
     public CustomUserDetailsService(UserRepository repository,
-                                    PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User registerUser(String username, String password, String role) {
+    public User registerUser(String name, String email, String password, String mobile, String role) {
+        if (repository.findByUsername(email).isPresent()) {
+            throw new UserAlreadyExistsException("Email already registered");
+        }
 
         User user = new User();
-        user.setUsername(username);
-
-        // ✅ Encode password properly
+        user.setName(name);
+        user.setUsername(email);
         user.setPassword(passwordEncoder.encode(password));
-
+        user.setMobile(mobile);
         user.setRole(role);
 
         return repository.save(user);
