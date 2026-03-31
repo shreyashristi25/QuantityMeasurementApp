@@ -1,235 +1,429 @@
-# 🚀 Quantity Measurement App – Dev Branch
+# 🚀 Quantity Measurement App 
 
-The **`dev` branch** serves as the central integration branch for all features of the Quantity Measurement Application.
-All feature branches are merged here before being promoted to `main`.
+- Conversion between different units (e.g., cm ↔ m, kg ↔ g)  
+- Comparison of quantities across units  
+- Arithmetic operations like addition and subtraction of quantities  
+- Handling of multiple measurement domains such as:
+  - Length  
+  - Weight  
+  - Volume  
+  - Temperature  
 
-This branch represents the **latest stable development state** of the application, combining all implemented functionalities including measurement logic, backend architecture, and authentication systems.
+This ensures **accuracy, consistency, and flexibility** in handling real-world measurement problems.
+---
+
+This repository contains the Spring Boot backend for the Quantity Measurement Application.
+The application is designed to perform **accurate unit measurement conversions and arithmetic operations on quantities** such as length, weight, volume, and temperature.  
+It also integrates a **secure authentication system using Spring Security, JWT, and Google OAuth2** to ensure safe and scalable user access.
 
 ---
 
-## 📌 Purpose of Dev Branch
+## 📏 About Quantity Measurement  
 
-* 🔄 Integrate all feature branches
-* 🧪 Serve as a testing ground before production
-* ⚙️ Maintain stable development builds
-* 🚀 Prepare code for release into `main`
+The Quantity Measurement system enables:
+
+## ⚙️ Core Functionalities  
+
+- 📏 Unit measurement & conversion  
+- ➕ Arithmetic operations on quantities  
+- 🔐 Secure authentication with JWT & OAuth2  
+- 👤 User management system  
+- 🚫 Unauthorized access handling (401 / 403)  
 
 ---
 
-## 🌳 Branch Workflow
+## 🌳 Git Workflow
 
 ```
 main
-└── dev   ← (YOU ARE HERE)
-    ├── feature/*
+└── dev
+    ├── feature/UC1-FeetEquality
+    ├── feature/UC2-InchEquality
+    ├── feature/UC3-GenericLength
+    ├── feature/UC4-YardEquality
+    ├── feature/UC5-UnitConversoion
+    ├── feature/UC6-UnitAddition
+    ├── feature/UC7-TargetUnitAddition
+    ├── feature/UC8-StandaloneUnit
+    ├── feature/UC9-WeightMeasurement
+    ├── feature/UC10-GenericQuantity
+    ├── feature/UC11-VolumeMeasurement
+    ├── feature/UC12-SubtractionAndDivision
+    ├── feature/UC13-CentralizedArithmeticLogic
+    ├── feature/UC14-TemperatureMeasurementwithSelectiveArithmetic
+    ├── feature/UC15-NTierArchitectureRefactor
+    ├── feature/UC16-JDBCPersistence
+    ├── feature/UC17-SpringBackend
+    └── feature/UC18-GoogleAuthUserManagement
 ```
+---
 
-### 🔁 Workflow Strategy
+## 📅 UC1 – Feet Measurement Equality (17 Feb 2026)
 
-1. Create feature branch from `dev`
-2. Implement functionality
-3. Test locally
-4. Merge back into `dev`
-5. After full validation → merge `dev` → `main`
+**Branch:** `feature/UC1-FeetEquality`
+
+### 🎯 Objective
+- Validate equality of two Feet measurements  
+- Implement proper `equals()` method  
+- Follow TDD approach  
+
+### ✅ Implementation
+- Created Feet class  
+- Implemented equality logic  
+- Handled null and type safety  
+- Wrote JUnit 5 test cases  
 
 ---
 
-## ⚙️ Integrated Functionalities
+## 📅 UC2 – Feet and Inches Measurement Equality (18 Feb 2026)
 
-### 📏 Measurement System
+**Branch:** `feature/UC2-InchEquality`
 
-* Unit conversion (cm ↔ m, kg ↔ g, etc.)
-* Multi-domain support:
+### 🎯 Objective
+- Compare Feet and Inches  
+- Ensure 12 inches = 1 foot  
 
-  * Length
-  * Weight
-  * Volume
-  * Temperature
-* Base unit standardization
-* Precision-safe calculations
-
----
-
-### ➕ Arithmetic Operations
-
-* Addition of quantities
-* Subtraction
-* Division
-* Target unit conversion after operations
-* Centralized arithmetic logic
+### ✅ Implementation
+- Introduced conversion logic  
+- Implemented base unit comparison  
+- Improved equality handling  
 
 ---
 
-### 🌡️ Special Handling
+## 📅 UC3 – Generic Quantity Class (19 Feb 2026)
 
-* Temperature conversions using formulas
-* Restricted invalid operations on temperature
+**Branch:** `feature/UC3-GenericLength`
+
+### 🎯 Objective
+- Remove duplication  
+- Apply DRY principle  
+
+### ✅ Implementation
+- Centralized conversion logic  
+- Removed unit-specific duplication  
+- Improved abstraction  
 
 ---
 
-### 🏗️ Architecture (N-Tier)
+## 📅 UC4 – Extended Unit Support (20 Feb 2026)
 
-```
+**Branch:** `feature/UC4-YardEquality`
+
+### 🎯 Objective
+- Support additional units  
+- Make system scalable  
+
+### ✅ Implementation
+- Introduced Unit Enum  
+- Base unit conversion mapping  
+
+---
+
+## 📅 UC5 – Unit-to-Unit Conversion (20 Feb 2026)
+
+**Branch:** `feature/UC5-UnitConversoion`
+
+### 🎯 Objective
+- Convert one unit into another  
+
+### ✅ Implementation
+- Implemented `convertTo()` method  
+- Precision-safe calculations  
+
+---
+
+## 📅 UC6 – Addition of Two Length Units (20 Feb 2026)
+
+**Branch:** `feature/UC6-UnitAddition`
+
+### 🎯 Objective
+- Add two quantities correctly  
+
+### ✅ Implementation
+- Converted to base unit before addition  
+- Accurate arithmetic operations  
+
+---
+
+## 📅 UC7 – Target Unit Addition (20 Feb 2026)
+
+**Branch:** `feature/UC7-TargetUnitAddition`
+
+### 🎯 Objective
+- Return result in specified unit  
+
+### ✅ Implementation
+- Implemented `add(quantity, targetUnit)`  
+
+---
+
+## 📅 UC8 – Standalone Unit Refactor (21 Feb 2026)
+
+**Branch:** `feature/UC8-StandaloneUnit`
+
+### 🎯 Objective
+- Improve modularity  
+
+### ✅ Implementation
+- Separated Unit enum  
+- Improved flexibility  
+
+---
+
+## 📅 UC9 – Weight Measurement (21 Feb 2026)
+
+**Branch:** `feature/UC9-WeightMeasurement`
+
+### 🎯 Objective
+- Add weight category  
+
+### ✅ Implementation
+- Added Gram, Kilogram  
+- Prevented cross-category comparison  
+
+---
+
+## 📅 UC10 – Generic Multi-Category System (21 Feb 2026)
+
+**Branch:** `feature/UC10-GenericQuantity`
+
+### 🎯 Objective
+- Fully generic system  
+
+### ✅ Implementation
+- Introduced Unit interface  
+- Type-safe operations  
+
+---
+
+## 📅 UC11 – Volume Measurement (22 Feb 2026)
+
+**Branch:** `feature/UC11-VolumeMeasurement`
+
+### 🎯 Objective
+- Add volume category  
+
+### ✅ Implementation
+- Added Litre, Millilitre  
+- Enabled conversions  
+
+---
+
+## 📅 UC12 – Subtraction & Division (23 Feb 2026)
+
+**Branch:** `feature/UC12-SubtractionAndDivision`
+
+### 🎯 Objective
+- Extend arithmetic operations  
+
+### ✅ Implementation
+- Added `subtract()` and `divide()`  
+
+---
+
+## 📅 UC13 – Centralized Arithmetic Logic (23 Feb 2026)
+
+**Branch:** `feature/UC13-CentralizedArithmeticLogic`
+
+### 🎯 Objective
+- Remove duplication  
+
+### ✅ Implementation
+- Centralized arithmetic handler  
+
+---
+
+## 📅 UC14 – Temperature Measurement (24 Feb 2026)
+
+**Branch:** `feature/UC14-TemperatureMeasurementwithSelectiveArithmetic`
+
+### 🎯 Objective
+- Support temperature  
+
+### ⚠ Special Note
+Temperature uses formula-based conversion:  
+
+°F = (°C × 9/5) + 32
+
+### ✅ Implementation
+- Created TemperatureUnit enum  
+- Implemented formula-based conversion  
+- Allowed equality comparison  
+- Restricted invalid arithmetic  
+
+---
+
+## 📅 UC15 – N-Tier Architecture (09 Mar 2026)
+
+**Branch:** `feature/UC15-NTierArchitectureRefactor`
+
+### 🏗 Architecture
+
 Controller → Service → Repository → Database
-```
 
-* DTO Layer
-* Dependency Injection
-* SOLID Principles
-* Clean Code Practices
+### ✅ Highlights
+- DTO Layer  
+- Dependency Injection  
+- SOLID Principles  
+
+---
+
+## 📅 UC16 – JDBC Integration (11 Mar 2026)
+
+**Branch:** `feature/UC16-JDBCPersistence`
+
+### ✅ Implementation
+- JDBC + SQL  
+- Connection Pooling  
+- Prepared Statements  
+- Repository Layer  
 
 ---
 
-### 🗄️ Persistence Layer
+## 📅 UC17 – Spring Boot Backend (12 Mar 2026)
 
-* JDBC integration
-* Spring Data JPA
-* ORM using Hibernate
-* Configurable database (MySQL / H2)
+**Branch:** `feature/UC17-SpringBackend`
+
+### ✅ Implementation
+- REST APIs  
+- Spring Data JPA  
+- Service Layer  
+- Logging  
 
 ---
+
+## 📅 UC18 – Google Auth & JWT (20 Mar 2026)
+
+**Branch:** `feature/UC18-GoogleAuthUserManagement`
+
+### 🔐 Features
+- Google OAuth2 Login  
+- JWT Authentication  
+- Secure APIs  
+- User Role Management  
+
+---
+
+## 🏁 Final Outcome
+
+✔ Supports:
+- Length  
+- Weight  
+- Volume  
+- Temperature  
+
+✔ Built with:
+- Clean Architecture  
+- Scalable Design  
+- Industry Practices  
+
+
+## ✨ Features Implemented
 
 ### 🔐 Authentication & Security
+- Spring Security integration  
+- JWT (JSON Web Token) based authentication  
+- Secure REST APIs  
+- Role-based access (if implemented)  
 
-#### JWT Authentication
-
-* Stateless authentication
-* Token-based API access
-* Secure endpoints
-
-#### OAuth2 Integration
-
-* Google Login
-* Auto user registration
-* JWT generation after OAuth login
-
----
+### 🌐 OAuth2 Login
+- Google Authentication using OAuth2  
+- Seamless login/signup with Google account  
+- Automatic user registration on first login  
 
 ### 👤 User Management
+- User entity and database integration  
+- Store authenticated user details  
+- Manage user sessions securely  
 
-* User entity handling
-* Role-based access (if implemented)
-* Secure session handling
-
----
-
-## 📂 Project Structure
-
-```
-src/
- ├── controller      # REST Controllers
- ├── service         # Business Logic
- ├── repository      # Database Layer
- ├── model           # Entity Classes
- ├── security        # JWT & OAuth2 Configurations
- ├── config          # App Configurations
- └── exception       # Global Exception Handling
-```
-
----
-
-## 🌐 API Overview
-
-| Endpoint                   | Description        |
-| -------------------------- | ------------------ |
-| `/auth/login`              | JWT login          |
-| `/oauth2/authorize/google` | Google OAuth login |
-| `/auth/user`               | Get user details   |
-| `/api/**`                  | Protected APIs     |
-
----
-
-## 🔄 Authentication Flow
-
-### 🔑 JWT Flow
-
-1. User logs in
-2. Backend validates credentials
-3. JWT token generated
-4. Token sent to client
-5. Client sends token in headers
-6. Backend validates each request
-
----
-
-### 🌍 OAuth2 Flow
-
-1. User selects Google login
-2. Redirect to Google
-3. Google authenticates user
-4. Backend receives user info
-5. JWT token generated
-6. User logged in securely
+### ⚙️ Backend Functionalities
+- RESTful API design  
+- Exception handling  
+- Secure endpoints  
+- Token validation and filtering  
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology      | Description                    |
-| --------------- | ------------------------------ |
-| Java            | Programming Language           |
-| Spring Boot     | Backend Framework              |
-| Spring Security | Authentication & Authorization |
-| JWT             | Token-based Authentication     |
-| OAuth2          | Google Login                   |
-| Hibernate / JPA | ORM Framework                  |
-| MySQL / H2      | Database                       |
-| Maven           | Build Tool                     |
+| Technology       | Description                              |
+|------------------|-------------------------------------------|
+| Java             | Programming Language                      |
+| Spring Boot      | Backend Framework                         |
+| Spring Security  | Authentication & Authorization            |
+| JWT              | Token-based authentication                |
+| OAuth2           | Google Login Integration                  |
+| Hibernate / JPA  | ORM for database interaction              |
+| MySQL / H2       | Database (configurable)                   |
+| Maven            | Build Tool                                |
 
 ---
 
-## 🧪 Development Guidelines
+## 📁 Project Structure
 
-* Always branch from `dev`
-* Follow naming: `feature/UCXX-description`
-* Write unit tests (TDD preferred)
-* Ensure no breaking changes before merging
-* Pull latest `dev` before pushing
-
----
-
-## ⚠️ Important Notes
-
-* `dev` is **not production-ready at all times**
-* Conflicts should be resolved before merging
-* Authentication flows must be tested thoroughly
-* API contracts should remain consistent
+    src/
+     ├── controller        # REST Controllers
+     ├── service           # Business Logic
+     ├── repository        # Database Layer
+     ├── model             # Entity Classes
+     ├── security          # JWT & OAuth2 Configurations
+     ├── config            # App Configurations
+     └── exception         # Global Exception Handling
 
 ---
 
-## 🏁 Final Goal
+## 📂 API Endpoints (Sample)  
 
-The `dev` branch ensures:
-
-✔ Smooth integration of all modules
-✔ Stable development environment
-✔ Scalable and maintainable backend
-✔ Production-ready code preparation
-
----
-
-## 🔗 Repository
-
-👉 https://github.com/Saud0786/QuantityMeasurementApp/tree/dev
+| Endpoint                      | Description                          |
+|------------------------------|--------------------------------------|
+| `/auth/login`                | JWT-based login                     |
+| `/oauth2/authorize/google`   | Google OAuth2 login                 |
+| `/auth/user`                 | Get authenticated user details      |
+| `/api/**`                    | Protected APIs                      |
 
 ---
 
-## 👨‍💻 Contribution
+## 🔄 Authentication Flow
 
-* Fork the repo
-* Create a feature branch
-* Commit changes
-* Raise a Pull Request to `dev`
+### 🔑 JWT Authentication Flow
+- User sends login request  
+- Backend validates credentials  
+- JWT token is generated  
+- Token is sent to client  
+- Client includes token in headers for API requests  
+- Backend validates token for each request  
+
+### 🌍 Google OAuth2 Flow
+- User clicks "Login with Google"  
+- Redirect to Google Authentication page  
+- Google verifies user credentials  
+- Backend receives user details  
+- User is registered (if new)  
+- JWT token is generated and returned  
 
 ---
 
-## 📌 Summary
+## 📊 Advantages  
 
-The **dev branch** is the backbone of development for the Quantity Measurement App, combining:
+- 🔐 High security (OAuth2 + JWT)  
+- ⚡ Scalable (stateless backend)  
+- 🧩 Clean and maintainable architecture  
+- 🔄 Easy integration with frontend applications  
+- 👨‍💻 Reduced backend complexity  
 
-* 📏 Accurate measurement system
-* 🔐 Secure authentication (JWT + OAuth2)
-* 🏗️ Clean architecture
-* ⚡ Scalable backend
+---
 
+## 📌 Conclusion  
 
+This project implements a **modern backend system** with:
+
+- **Robust quantity measurement and conversion logic**
+- **Secure authentication using OAuth2 and JWT**
+- **Scalable and maintainable architecture using Spring Boot**
+
+It is designed to be **production-ready, secure, and easily extendable**.
+
+---
+
+## 🔗 Repository Link  
+👉 [View Code on GitHub](https://github.com/shreyashristi25/QuantityMeasurementApp/tree/dev)
