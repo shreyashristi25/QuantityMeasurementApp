@@ -25,7 +25,6 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
         String username = authentication.getName();
         String token = jwtUtil.generateToken(username);
 
-        // 🔥 IMPORTANT: prevent redirect
         clearAuthenticationAttributes(request);
 
         response.setContentType("application/json");

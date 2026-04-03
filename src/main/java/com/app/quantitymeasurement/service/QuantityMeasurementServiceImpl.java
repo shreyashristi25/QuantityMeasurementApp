@@ -119,14 +119,12 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         Quantity<?> result = ((Quantity) quantity1).add((Quantity) quantity2);
 
         repository.save(
-                new QuantityMeasurementEntity(
-                        null,
-                        "ADD",
-                        quantity1.toString(),
-                        quantity2.toString(),
-                        result.toString(),
-                        null
-                )
+                QuantityMeasurementEntity.builder()
+                        .operation("ADD")
+                        .operand1(quantity1.toString())
+                        .operand2(quantity2.toString())
+                        .result(result.toString())
+                        .build()
         );
 
         return new QuantityDTO(result.getValue(), result.getUnit().toString());
@@ -143,14 +141,12 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         Quantity<?> result = ((Quantity) quantity1).subtract((Quantity) quantity2);
 
         repository.save(
-                new QuantityMeasurementEntity(
-                        null,
-                        "SUBTRACT",
-                        quantity1.toString(),
-                        quantity2.toString(),
-                        result.toString(),
-                        null
-                )
+                QuantityMeasurementEntity.builder()
+                        .operation("SUBTRACT")
+                        .operand1(quantity1.toString())
+                        .operand2(quantity2.toString())
+                        .result(result.toString())
+                        .build()
         );
 
         return new QuantityDTO(result.getValue(), result.getUnit().toString());
@@ -167,14 +163,12 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         double result = ((Quantity) quantity1).divide((Quantity) quantity2);
 
         repository.save(
-                new QuantityMeasurementEntity(
-                        null,
-                        "DIVIDE",
-                        quantity1.toString(),
-                        quantity2.toString(),
-                        String.valueOf(result),
-                        null
-                )
+                QuantityMeasurementEntity.builder()
+                        .operation("DIVIDE")
+                        .operand1(quantity1.toString())
+                        .operand2(quantity2.toString())
+                        .result(String.valueOf(result))
+                        .build()
         );
 
         return result;

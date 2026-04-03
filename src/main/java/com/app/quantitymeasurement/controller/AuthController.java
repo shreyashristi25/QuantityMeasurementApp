@@ -41,12 +41,19 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@Valid @RequestBody LoginRequest request) {
-        authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()));
-        String token = jwtUtil.generateToken(request.getEmail());
-        return ResponseEntity.ok(Map.of("token", token));
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
+        try {
+            authManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()));
+            String token = jwtUtil.generateToken(request.getEmail());
+            return ResponseEntity.ok(Map.of("token", token));
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(401).body(Map.of("message", "Invalid email or password"));
+        } catch (Exception e) {
+            System.out.println("Login error: " + e.getMessage());
+            return ResponseEntity.status(401).body(Map.of("message", "Authentication failed"));
+        }
     }
 }

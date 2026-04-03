@@ -10,5 +10,7 @@ import java.util.List;
 public interface QuantityMeasurementRepository extends JpaRepository<QuantityMeasurementEntity, Long> {
 
 	List<QuantityMeasurementEntity> findByOperation(String operation);
+	
+	List<QuantityMeasurementEntity> findByUsernameOrderByTimestampDesc(String username);
 
 }
