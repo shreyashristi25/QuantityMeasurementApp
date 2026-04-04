@@ -1,0 +1,18 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: history-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/history_db
+    username: root
+    password: Shreya@2002
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
