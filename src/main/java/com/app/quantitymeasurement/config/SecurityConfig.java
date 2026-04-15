@@ -1,6 +1,7 @@
 package com.app.quantitymeasurement.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -22,6 +23,9 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
+    @Value("${ALLOWED_ORIGINS:http://localhost:4200,http://localhost:4300}")
+    private String allowedOrigins;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -29,8 +33,9 @@ public class SecurityConfig {
             .cors(cors -> cors
                 .configurationSource(request -> {
                     var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-                    corsConfig.addAllowedOrigin("http://localhost:4200");
-                    corsConfig.addAllowedOrigin("http://localhost:4300");
+                    for (String origin : allowedOrigins.split(",")) {
+                        corsConfig.addAllowedOrigin(origin.trim());
+                    }
                     corsConfig.addAllowedMethod("*");
                     corsConfig.addAllowedHeader("*");
                     corsConfig.setAllowCredentials(true);
@@ -62,4 +67,4 @@ public class SecurityConfig {
             AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-}
+}
